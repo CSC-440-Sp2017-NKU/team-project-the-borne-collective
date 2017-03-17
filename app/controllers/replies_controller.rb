@@ -71,4 +71,8 @@ class RepliesController < ApplicationController
     def reply_params
       params.require(:reply).permit(:post_id, :content)
     end
+    
+    def update_param
+      params.require(:reply).permit(:content)
+    end
 end

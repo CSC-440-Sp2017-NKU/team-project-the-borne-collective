@@ -3,6 +3,7 @@ require 'test_helper'
 class RepliesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @reply = replies(:one)
+    @post = posts(:one)
   end
 
   test "should get index" do
@@ -17,7 +18,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create reply" do
     assert_difference('Reply.count') do
-      post replies_url, params: { reply: { content: @reply.content, post_id: @reply.post_id } }
+      post replies_url, params: { reply: { content: @reply.content, post_id: @post.id } }
     end
 
     assert_redirected_to reply_url(Reply.last)
@@ -34,7 +35,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update reply" do
-    patch reply_url(@reply), params: { reply: { content: @reply.content, post_id: @reply.post_id } }
+    patch reply_url(@reply), params: { reply: { content: @reply.content } }
     assert_redirected_to reply_url(@reply)
   end
 
