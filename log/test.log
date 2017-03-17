@@ -3288,3 +3288,264 @@ Processing by HomeController#index as HTML
   Rendered home/index.html.erb within layouts/application (0.3ms)
 Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.0ms)
   [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "posts" DISABLE TRIGGER ALL;ALTER TABLE "replies" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "posts"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, '2017-03-17 17:46:13.620317', '2017-03-17 17:46:13.620317', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, '2017-03-17 17:46:13.620317', '2017-03-17 17:46:13.620317', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "replies"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "replies" ("post_id", "content", "created_at", "updated_at", "id") VALUES (1, 'MyText', '2017-03-17 17:46:13.629020', '2017-03-17 17:46:13.629020', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "replies" ("post_id", "content", "created_at", "updated_at", "id") VALUES (1, 'MyText', '2017-03-17 17:46:13.629020', '2017-03-17 17:46:13.629020', 298486374)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "posts" ENABLE TRIGGER ALL;ALTER TABLE "replies" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+HomeControllerTest: test_should_get_index
+-----------------------------------------
+Started GET "/home/index" for 127.0.0.1 at 2017-03-17 17:46:13 +0000
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 147ms (Views: 135.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------
+PostTest: test_body_should_be_atleast_8_characters
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+PostTest: test_user_id_should_not_be_blank
+------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "an example title"], ["content", "an example of post content"], ["created_at", 2017-03-17 17:46:14 UTC], ["updated_at", 2017-03-17 17:46:14 UTC]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------
+PostTest: test_body_should_be_present
+-------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------------
+PostTest: test_title_must_be_between_6_and_150_characters
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------
+PostTest: test_should_be_valid
+------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------
+PostTest: test_title_should_be_present
+--------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+RepliesControllerTest: test_should_show_reply
+---------------------------------------------
+  [1m[36mReply Load (1.8ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/replies/980190962" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by RepliesController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering replies/show.html.erb within layouts/application
+  Rendered replies/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------
+RepliesControllerTest: test_should_get_index
+--------------------------------------------
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/replies" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by RepliesController#index as HTML
+  Rendering replies/index.html.erb within layouts/application
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT "replies".* FROM "replies"[0m
+  Rendered replies/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+RepliesControllerTest: test_should_get_edit
+-------------------------------------------
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/replies/980190962/edit" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by RepliesController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering replies/edit.html.erb within layouts/application
+  Rendered replies/_form.html.erb (11.1ms)
+  Rendered replies/edit.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 16ms (Views: 14.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------
+RepliesControllerTest: test_should_update_reply
+-----------------------------------------------
+  [1m[36mReply Load (0.3ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/replies/980190962" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by RepliesController#update as HTML
+  Parameters: {"reply"=>{"content"=>"MyText", "post_id"=>"1"}, "id"=>"980190962"}
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendering replies/edit.html.erb within layouts/application
+  Rendered replies/_form.html.erb (1.9ms)
+  Rendered replies/edit.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 13ms (Views: 5.9ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------
+RepliesControllerTest: test_should_create_reply
+-----------------------------------------------
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "replies"[0m
+Started POST "/replies" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by RepliesController#create as HTML
+  Parameters: {"reply"=>{"content"=>"MyText", "post_id"=>"1"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendering replies/new.html.erb within layouts/application
+  Rendered replies/_form.html.erb (2.0ms)
+  Rendered replies/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 8ms (Views: 6.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "replies"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------
+RepliesControllerTest: test_should_destroy_reply
+------------------------------------------------
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "replies"[0m
+Started DELETE "/replies/980190962" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by RepliesController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "replies" WHERE "replies"."id" = $1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/replies
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "replies"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+RepliesControllerTest: test_should_get_new
+------------------------------------------
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT  "replies".* FROM "replies" WHERE "replies"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/replies/new" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by RepliesController#new as HTML
+  Rendering replies/new.html.erb within layouts/application
+  Rendered replies/_form.html.erb (1.9ms)
+  Rendered replies/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------
+PostsControllerTest: test_should_update_post
+--------------------------------------------
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/posts/980190962" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by PostsController#update as HTML
+  Parameters: {"post"=>{"content"=>"MyText", "title"=>"MyString", "user_id"=>"1"}, "id"=>"980190962"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (2.4ms)
+  Rendered posts/edit.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 28ms (Views: 6.9ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------
+PostsControllerTest: test_should_create_post
+--------------------------------------------
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+Started POST "/posts" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by PostsController#create as HTML
+  Parameters: {"post"=>{"content"=>"MyText", "title"=>"MyString", "user_id"=>"1"}}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (2.5ms)
+  Rendered posts/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 9ms (Views: 6.4ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+PostsControllerTest: test_should_get_index
+------------------------------------------
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/posts" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 1.5ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+PostsControllerTest: test_should_destroy_post
+---------------------------------------------
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+Started DELETE "/posts/980190962" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by PostsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mReply Load (0.2ms)[0m  [1m[34mSELECT "replies".* FROM "replies" WHERE "replies"."post_id" = $1[0m  [["post_id", 980190962]]
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/posts
+Completed 302 Found in 13ms (ActiveRecord: 0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+PostsControllerTest: test_should_get_edit
+-----------------------------------------
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/posts/980190962/edit" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering posts/edit.html.erb within layouts/application
+  Rendered posts/_form.html.erb (2.4ms)
+  Rendered posts/edit.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 8ms (Views: 6.1ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+PostsControllerTest: test_should_show_post
+------------------------------------------
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/posts/980190962" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------
+PostsControllerTest: test_should_get_new
+----------------------------------------
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/posts/new" for 127.0.0.1 at 2017-03-17 17:46:14 +0000
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (2.3ms)
+  Rendered posts/new.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m

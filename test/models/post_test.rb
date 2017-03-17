@@ -35,4 +35,10 @@ class PostTest < ActiveSupport::TestCase
     assert @post.valid?
   end
   
+  test "user_id should not be blank" do
+      @post.user_id = nil
+      @post.save
+      assert @post.user_id != nil
+  end
+  
 end
