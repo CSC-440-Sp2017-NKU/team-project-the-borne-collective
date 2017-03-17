@@ -326,3 +326,56 @@ Migrating to CreateReplies (20170317161155)
   [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1604817003171425505)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for 50.5.49.149 at 2017-03-17 16:39:36 +0000
+Cannot render console from 50.5.49.149! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 313ms (Views: 312.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts" for 50.5.49.149 at 2017-03-17 16:39:44 +0000
+Cannot render console from 50.5.49.149! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (2.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 180ms (Views: 162.1ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/posts/new" for 50.5.49.149 at 2017-03-17 16:39:47 +0000
+Cannot render console from 50.5.49.149! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (14.7ms)
+  Rendered posts/new.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 126ms (Views: 118.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for 50.5.49.149 at 2017-03-17 16:43:41 +0000
+Cannot render console from 50.5.49.149! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 48ms (Views: 46.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 50.5.49.149 at 2017-03-17 16:43:45 +0000
+Cannot render console from 50.5.49.149! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 79ms (Views: 78.1ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+Started GET "/" for 50.5.49.149 at 2017-03-17 17:20:12 +0000
+Cannot render console from 50.5.49.149! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 162ms (Views: 160.9ms | ActiveRecord: 0.0ms)
+
+
