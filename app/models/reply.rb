@@ -1,3 +1,3 @@
 class Reply < ApplicationRecord
-    belongs_to :Post
+    belongs_to :post
 end
