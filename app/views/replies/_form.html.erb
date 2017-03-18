@@ -15,7 +15,8 @@
     <%= f.label :content %>
     <%= f.text_area :content %>
   </div>
-
+  
+  <% if params[:parent] %><input type="hidden" id="post_id" name="reply[post_id]" value="<%= params[:parent] %>" /><% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

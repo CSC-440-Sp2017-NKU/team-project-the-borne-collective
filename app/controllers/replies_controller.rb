@@ -28,10 +28,10 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
+        format.html { redirect_to Post.find(@reply.post_id), notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
       else
-        format.html { render :new }
+        format.html { redirect_to "/replies/new?parent=#{@reply.post_id}&error=true"}
         format.json { render json: @reply.errors, status: :unprocessable_entity }
       end
     end

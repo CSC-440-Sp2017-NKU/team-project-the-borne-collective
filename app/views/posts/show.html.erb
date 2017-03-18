@@ -9,12 +9,16 @@
   <%= @post.content %>
 </p>
 
+<h2 padding-left="100px" ><u><%= link_to "Submit An Answer!", "/replies/new?parent=#{@post.id}" %></u></h2>
+
 <table>
     <tbody>
     <% @answers.each do |reply| %>
       <tr>
         <td>[todo: author]</td>
         <td><%= reply.content %></td>
+        <td><%= link_to 'Edit', edit_post_path(reply) %></td>
+        <td><%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
