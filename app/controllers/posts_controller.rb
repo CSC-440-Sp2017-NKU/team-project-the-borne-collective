@@ -32,7 +32,7 @@ class PostsController < ApplicationController
         format.html { redirect_to Forum.find(@post.forum_id), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { redirect_to (new_post_url + "?forum=#{@post.forum_id}&subj=#{Forum.find(@post.forum_id).subject}&error=true" ) }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
