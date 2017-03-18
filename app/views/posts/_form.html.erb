@@ -16,16 +16,12 @@
     <%= f.text_field :title %>
   </div>
 
-  <div class="field">
+  <div cols="80" rows="20">
     <%= f.label :content %>
     <%= f.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= f.label :forum_id %>
-    <%= f.number_field :forum_id %>
-  </div>
-
+  <% if params[:forum] %><input type="hidden" id="forum_id" name="post[forum_id]" value="<%= params[:forum] %>" /><% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

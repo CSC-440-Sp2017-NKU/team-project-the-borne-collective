@@ -10,6 +10,7 @@ class ForumsController < ApplicationController
   # GET /forums/1
   # GET /forums/1.json
   def show
+    @subject_posts = @forum.posts
   end
 
   # GET /forums/new
