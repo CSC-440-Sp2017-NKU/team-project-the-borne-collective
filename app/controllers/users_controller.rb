@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    #@admin = current_user.admin?
+    @admin = current_user.admin?
   end
   
   def show
