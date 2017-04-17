@@ -42,10 +42,7 @@ GEM
     autoprefixer-rails (6.7.7.2)
       execjs
     bcrypt (3.1.11)
-<<<<<<< HEAD
     bindex (0.5.0)
-=======
->>>>>>> 6c1e3d86a85f4be286fe5f85dda6d69d39499410
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
