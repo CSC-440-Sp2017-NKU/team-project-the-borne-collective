@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <h3><strong>Subject:</strong></h3>
-  <%= @forum.subject %>
-  <h2 padding-left="100px" ><u><%= link_to "Submit Question!", "/posts/new?forum=#{@forum.id}&subj=#{@forum.subject}" %></u></h2>
+  <h3><strong>Name:</strong></h3>
+  <%= @forum.name %>
+  <h2 padding-left="100px" ><u><%= link_to "Submit Question!", "/posts/new?forum=#{@forum.id}&subj=#{@forum.name}" %></u></h2>
 </p>
 
 <table>

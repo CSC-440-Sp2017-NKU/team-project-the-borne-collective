@@ -11,7 +11,7 @@
     <% @posts.each do |post| %>
       <tr>
         <span class="listing"> 
-          <td><strong><h4><%= link_to  @forums.find(post.forum_id).subject, post %></h4></strong></td>
+          <td><strong><h4><%= link_to  @forums.find(post.forum_id).name, post %></h4></strong></td>
           <td><h5><%= link_to post.title, post %></h5></td>
         </span>
       </tr>
@@ -26,7 +26,7 @@
     <% @forums.each do |forum| %>
       <tr>
         <span class="listing"> 
-          <td><strong><h4><%= link_to  forum.subject, forum %></h4></strong></td>
+          <td><strong><h4><%= link_to  forum.name, forum %></h4></strong></td>
         </span>
       </tr>
     <% end %>
