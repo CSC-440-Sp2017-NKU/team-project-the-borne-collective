@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :voteUp, :voteDown]
 
   # GET /posts
   # GET /posts.json
@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-
   end
 
   # GET /posts/1/edit
@@ -59,6 +58,14 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def voteUp
+    # Add vote to DB and set to a 1
+  end
+  
+  def voteDown
+    # Add vote to DB and set to a -1
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -70,4 +77,6 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :forum_id)
     end
+    
+    
 end
