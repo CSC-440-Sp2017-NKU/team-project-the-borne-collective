@@ -2,10 +2,10 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
   def setup
-    @forum = Forum.create(subject: "Computer Science")
+    @course = Course.create(subject: "Computer Science")
     @post = Post.new(title: "an example title",
                      content: "an example of post content",
-                     forum_id: @forum.id)
+                     course_id: @course.id)
   end
   
   test "should be valid" do

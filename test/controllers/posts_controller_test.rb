@@ -3,7 +3,7 @@ require 'test_helper'
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
-    @forum = forums(:one)
+    @course = courses(:one)
   end
 
   test "should get new" do
@@ -13,7 +13,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference('Post.count') do
-      post posts_url, params: { post: { content: @post.content, title: @post.title, forum_id: @forum.id } }
+      post posts_url, params: { post: { content: @post.content, title: @post.title, course_id: @course.id } }
     end
 
     assert_redirected_to post_url(Post.last)
@@ -30,7 +30,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post" do
-    patch post_url(@post), params: { post: { content: @post.content, title: @post.title, forum_id: @post.forum_id } }
+    patch post_url(@post), params: { post: { content: @post.content, title: @post.title, course_id: @post.course_id } }
     assert_redirected_to post_url(@post)
   end
 

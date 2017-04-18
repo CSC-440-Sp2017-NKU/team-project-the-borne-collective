@@ -5,8 +5,8 @@ class ReplyTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @forum = Forum.create(subject: "Computer Science")
-    @post = Post.create(title: "some title", content: "some content", forum_id: @forum.id)
+    @course = Course.create(subject: "Computer Science")
+    @post = Post.create(title: "some title", content: "some content", course_id: @course.id)
     @reply = Reply.create(content: "some content", post_id: @post.id)
   end
   
