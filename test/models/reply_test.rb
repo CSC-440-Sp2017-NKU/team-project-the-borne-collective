@@ -5,9 +5,16 @@ class ReplyTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @forum = Forum.create(subject: "Computer Science")
-    @post = Post.create(title: "some title", content: "some content", forum_id: @forum.id)
-    @reply = Reply.create(content: "some content", post_id: @post.id)
+    @course = courses(:one)
+    @post = posts(:one)
+    @reply = replies(:one)
+    @user = users(:one)
+    
+    
+    @post.course_id = @course.id
+    @post.user_id = @user.id
+    @reply.post_id = @post.id
+    @reply.user_id = @user.id
   end
   
   test "should be valid" do

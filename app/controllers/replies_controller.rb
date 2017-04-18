@@ -26,28 +26,23 @@ class RepliesController < ApplicationController
   def create
     @reply = Reply.new(reply_params)
 
-    respond_to do |format|
-      if @reply.save
-        format.html { redirect_to Post.find(@reply.post_id), notice: 'Reply was successfully created.' }
-        format.json { render :show, status: :created, location: @reply }
-      else
-        format.html { redirect_to "/replies/new?parent=#{@reply.post_id}&error=true"}
-        format.json { render json: @reply.errors, status: :unprocessable_entity }
-      end
+    if @reply.save
+      flash[:success] = "Reply created successfully!"
+      redirect_to post_path(Post.find(@reply.post_id))
+    else
+      flash.now[:danger] = 'Invalid Reply'
+      render 'new'
     end
   end
 
   # PATCH/PUT /replies/1
   # PATCH/PUT /replies/1.json
   def update
-    respond_to do |format|
-      if @reply.update(reply_params)
-        format.html { redirect_to @reply, notice: 'Reply was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reply }
-      else
-        format.html { render :edit }
-        format.json { render json: @reply.errors, status: :unprocessable_entity }
-      end
+    if @reply.update_attributes(update_params)
+      flash[:success] = "Reply Updated"
+      redirect_to @reply
+    else
+      render 'edit'
     end
   end
 
@@ -69,10 +64,10 @@ class RepliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reply_params
-      params.require(:reply).permit(:post_id, :content)
+      params.require(:reply).permit(:content, :post_id, :user_id)
     end
     
-    def update_param
+    def update_params
       params.require(:reply).permit(:content)
     end
 end
