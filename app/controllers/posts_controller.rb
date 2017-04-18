@@ -27,10 +27,10 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to Forum.find(@post.forum_id), notice: 'Post was successfully created.' }
+        format.html { redirect_to Course.find(@post.course_id), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { redirect_to (new_post_url + "?forum=#{@post.forum_id}&subj=#{Forum.find(@post.forum_id).name}&error=true" ) }
+        format.html { redirect_to (new_post_url + "?course=#{@post.course_id}&subj=#{Course.find(@post.course_id).name}&error=true" ) }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -68,6 +68,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :forum_id)
+      params.require(:post).permit(:title, :content, :course_id)
     end
 end

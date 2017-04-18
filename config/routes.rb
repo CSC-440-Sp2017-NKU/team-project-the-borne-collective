@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   
   resources :users
-  resources :forums
+  resources :courses
   resources :replies
   resources :posts
   get 'home/index'
