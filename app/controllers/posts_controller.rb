@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:update]
 
   # GET /posts
   # GET /posts.json
@@ -13,7 +14,6 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-
   end
 
   # GET /posts/1/edit
@@ -25,28 +25,23 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to Course.find(@post.course_id), notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { redirect_to (new_post_url + "?course=#{@post.course_id}&subj=#{Course.find(@post.course_id).name}&error=true" ) }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      flash[:success] = "Post created successfully!"
+      redirect_to @post
+    else
+      flash.now[:danger] = 'Posting Failed'
+      render 'new'
     end
   end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.update_attributes(post_params)
+      flash[:success] = "Post Updated"
+      redirect_to @post
+    else
+      render 'edit'
     end
   end
 
@@ -54,10 +49,8 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = "User deleted"
+    redirect_to root_url
   end
 
   private
@@ -68,6 +61,13 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :course_id)
+      params.require(:post).permit(:title, :content, :user_id, :course_id)
+    end
+    
+    # Ensure correct user is updating their own post (or admin)
+    def correct_user
+      @post = Post.find(params[:id])
+      @user = User.find(@post.user_id)
+      redirect_to(root_url) unless ( current_user?(@user) | current_user.admin?)
     end
 end

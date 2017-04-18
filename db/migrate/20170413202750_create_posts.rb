@@ -6,7 +6,6 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.references :user
       t.references :course
       
-      
       t.timestamps
     end 
   end
