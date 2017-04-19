@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h3><strong>Name:</strong></h3>
+  <%= @course.name %>
+  <h2 padding-left="100px" ><u><%= link_to "Submit Question!", "/posts/new?course=#{@course.id}&subj=#{@course.name}" %></u></h2>
+</p>
+
+<table>
+    <tbody>
+    <% @subject_posts.each do |post| %>
+      <tr>
+       <span class="listing"> 
+          <td><strong><h4><%= link_to  post.title, post %></h4></strong></td>
+          <td><h5><%= link_to post.title, post %></h5></td>
+       </span>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

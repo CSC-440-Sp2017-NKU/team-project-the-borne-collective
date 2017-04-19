@@ -21,7 +21,7 @@
     <%= f.text_area :content %>
   </div>
 
-  <% if params[:forum] %><input type="hidden" id="forum_id" name="post[forum_id]" value="<%= params[:forum] %>" /><% end %>
+  <% if params[:course] %><input type="hidden" id="course_id" name="post[course_id]" value="<%= params[:course] %>" /><% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

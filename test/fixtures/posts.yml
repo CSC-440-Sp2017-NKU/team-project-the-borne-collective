@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyStringExtraChars
-  content: MyText6chars
-  forum_id: 1
+  content: "Question content of first post"
+  title: "First post! [title]"
+
+  
 
 two:
-  title: MyStringExtraChars
-  content: MyText6chars
-  forum_id: 2
+  content: "Question content of second post"
+  title: "second post! [title]"
