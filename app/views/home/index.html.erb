@@ -8,11 +8,11 @@
     <th width="70%">Title</th>
       
     </tr>
-    <% @posts.each do |post| %>
+    <% @courses.each do |course| %>
       <tr>
         <span class="listing"> 
-          <td><strong><h4><%= link_to  @courses.find(post.course_id).name, post %></h4></strong></td>
-          <td><h5><%= link_to post.title, post %></h5></td>
+          <td><strong><h4><%= link_to course.name, course %></h4></strong></td>
+          <td><h5><%= link_to course.name, course %></h5></td>
         </span>
       </tr>
     <% end %>

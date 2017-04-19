@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
  # before_action :registrar_or_admin, only: :new
   
+  def index
+    @users = User.paginate(page: params[:page])
+  end
+  
   def new
     @user = User.new
     @admin = current_user.admin?
