@@ -17,7 +17,7 @@
         <td>1000<-->/td>
         <td><%= link_to '<span style="color:green">&#8593;</span>'.html_safe  %><br/><%= link_to '<span style="color:red">&#8595;</span>'.html_safe %></td>
         <span class="listing"> 
-          <td><strong><h4><%= link_to  @forums.find(post.forum_id).subject, post %></h4></strong></td>
+          <td><strong><h4><%= link_to  @courses.find(post.course_id).name, post %></h4></strong></td>
           <td><h5><%= link_to post.title, post %></h5></td>
         </span>
       </tr>
@@ -26,13 +26,13 @@
 </table>
 
 
-<strong><h2>Course forums:</h2></strong>
+<strong><h2>Course courses:</h2></strong>
 <table>
     <tbody>
-    <% @forums.each do |forum| %>
+    <% @courses.each do |course| %>
       <tr>
         <span class="listing"> 
-          <td><strong><h4><%= link_to  forum.subject, forum %></h4></strong></td>
+          <td><strong><h4><%= link_to  course.name, course %></h4></strong></td>
         </span>
       </tr>
     <% end %>

@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: CSC 440 Software Engineering
+  description: Techniques in computer software specification, design, implementation, testing, documentation, and maintenance.
+  titleline: CSC 440
+  
+
+two:
+  name: CSC 439 Software testing and maintenance
+  description: techniques in computer software implementation, testing, configuration management and maintenance.
+  titleline: CSC 339
