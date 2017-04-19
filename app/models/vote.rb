@@ -8,8 +8,10 @@ class Vote < ApplicationRecord
         Votes.create(:post_id => post_id, :user_id => user_id, :vote => num)
     end
     
+    # Doesnt do anything
     def count_votes(post_id)
         tot_vote = 0;
+        rs = con.exec "SELECT * FROM votes WHERE user_id = ''"
         Votes.vote.each do |x| 
             tot_vote = tot_vote + x
         end
