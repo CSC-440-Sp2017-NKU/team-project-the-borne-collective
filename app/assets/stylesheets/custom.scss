@@ -203,6 +203,7 @@ input {
   margin-left: 0;
 }
 
+
 /* Users index */
 
 .users {
@@ -213,6 +214,20 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+.custom_submit {
+    border: 1px solid #5f99cf;
+    background-color: #EFF7FF;
+}
+
+.registerCustom {
+  padding-right: 20px;
+  
+}
+
+.registerCustom2 {
+  padding-left: 20px;
 }
 
 /* miscellaneous */
