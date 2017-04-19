@@ -13,7 +13,8 @@
     </tr>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= Vote.count_votes(post.forum_id)</td>
+        <!--#Vote.count_votes(post.forum_id)-->
+        <td>1000<-->/td>
         <td><%= link_to '<span style="color:green">&#8593;</span>'.html_safe  %><br/><%= link_to '<span style="color:red">&#8595;</span>'.html_safe %></td>
         <span class="listing"> 
           <td><strong><h4><%= link_to  @forums.find(post.forum_id).subject, post %></h4></strong></td>
