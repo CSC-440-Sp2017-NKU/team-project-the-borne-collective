@@ -15,7 +15,9 @@
     <tbody>
     <% @answers.each do |reply| %>
       <tr>
-        <td>[todo: author]</td>
+        <td>0<%= %></td>
+        <td><%= link_to '<span style="color:green">&#8593;</span>'.html_safe  %><br/><%= link_to '<span style="color:red">&#8595;</span>'.html_safe %></td>
+        <td>[todo: author]!</td>
         <td><%= reply.content %></td>
         <td><%= link_to 'Edit', edit_post_path(reply) %></td>
         <td><%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
