@@ -19,12 +19,20 @@ class UsersController < ApplicationController
   
   def create
     # Allows admin to set admin/registrar flags
-    @user = current_user.admin? ? User.new(user_params_admin) : User.new(user_params)
+    user = current_user.admin? ? User.new(user_params_admin) : User.new(user_params)
 
-    if @user.save
+    if user.save
       flash[:success] = "User created successfully!"
-      redirect_to @user
+      admin_or_registrar = user.admin? | user.registrar?
+      
+      # Registrars and Admin's don't need courses added
+      if admin_or_registrar
+        redirect_to root_url
+      else
+        redirect_to "/register_courses/#{user.id}"         #Register user's courses
+      end
     else
+      # User failed to save -> reroute to login page and try again
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end

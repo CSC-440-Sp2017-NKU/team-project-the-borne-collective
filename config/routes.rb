@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
-  get    '/signup', to: 'users#new'
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  get    '/register', to: 'users#new'
+  get    '/login',    to: 'sessions#new'
+  post   '/login',    to: 'sessions#create'
+  delete '/logout',   to: 'sessions#destroy'
   
   get  '/register_courses/:id', to: 'course_registrations#edit'
   post '/register_courses/:id', to: 'course_registrations#update'
