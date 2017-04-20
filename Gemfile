@@ -14,6 +14,7 @@ gem 'faker',                   '1.6.6'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 
+gem 'acts_as_votable', '~> 0.10.0'
 #
 gem 'bootstrap-sass', '3.3.6'
 # Use postgresql as the database for Active Record

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_voter
   attr_accessor :remember_token
   has_many :course_records
   has_many :courses, :through => :course_records

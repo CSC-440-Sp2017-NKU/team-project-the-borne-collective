@@ -9,17 +9,28 @@
     
     <th width=5%>Vote</th>
     <th></th>
-    <th width="27%">Subject</th>
+    <th width="27%">Course</th>
     <th width="68%">Title</th>
       
     </tr>
-    <% @courses.each do |course| %>
+    <% Post.all[1..10].each do |post| %>
       <tr>
-        <td><%= Vote.count_votes(post.forum_id) %></td>
-        <td><%= link_to '<span style="color:green">&#8593;</span>'.html_safe  %><br/><%= link_to '<span style="color:red">&#8595;</span>'.html_safe %></td>
+        <td>
+            <%= link_to like_post_path(post), method: :put do %>
+             '<span style="color:green">&#8593;</span>'
+              <%= post.get_upvotes.size %>
+            <% end %>
+        </td>
+        <td>
+            <%= link_to dislike_post_path(post), method: :put do %>
+               <span style="color:red">&#8595;</span>
+             <%= post.get_downvotes.size %>
+            <% end %>
+        </td>
+
         <span class="listing"> 
-          <td><strong><h4><%= link_to course.name, course %></h4></strong></td>
-          <td><h5><%= link_to course.name, course %></h5></td>
+          <td><strong><h4><%= link_to Course.find(post.course_id).name, post %></h4></strong></td>
+          <td><h5><%= link_to post.title, post %></h5></td>
         </span>
       </tr>
     <% end %>

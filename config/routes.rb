@@ -15,6 +15,20 @@ Rails.application.routes.draw do
   resources :courses
   resources :replies
   resources :posts
+  
+  resources :posts do
+    member do
+      put "like", to: "posts#upvote"
+      put "dislike", to: "posts#downvote"
+    end
+  end
+  
+  resources :replies do
+    member do
+      put "like", to: "replies#upvote"
+      put "dislike", to: "replies#downvote"
+    end
+  end
 
   get 'home/index'
   get  'application/management'
