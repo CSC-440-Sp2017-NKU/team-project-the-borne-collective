@@ -203,6 +203,17 @@ input {
   margin-left: 0;
 }
 
+.close {
+  float: none;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: #7c1818;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .7;
+}
+
 
 /* Users index */
 

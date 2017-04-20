@@ -5,5 +5,7 @@
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
-  
+  <% if (current_user.admin? | current_user.registrar?) && !current_user?(user) %>
+    | <%= link_to "Manage courses", "/register_courses/#{user.id}/edit" %>
+  <% end %>
 </li>

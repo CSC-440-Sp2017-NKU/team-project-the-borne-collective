@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   post   '/login',    to: 'sessions#create'
   delete '/logout',   to: 'sessions#destroy'
   
-  get  '/register_courses/:id', to: 'course_registrations#edit'
-  post '/register_courses/:id', to: 'course_registrations#update'
+  get    '/register_courses/:id/edit',   to: 'course_registrations#edit'
+  post   '/register_courses/:id',        to: 'course_registrations#update'
+  delete '/register_courses/:id',        to: 'course_registrations#destroy'
   
   
   
