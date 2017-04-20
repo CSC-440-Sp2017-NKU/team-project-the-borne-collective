@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :voteUp, :voteDown]
   before_action :correct_user, only: [:update]
 
   # GET /posts
@@ -51,6 +51,14 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:success] = "User deleted"
     redirect_to root_url
+  end
+  
+  def voteUp
+    # Add vote to DB and set to a 1
+  end
+  
+  def voteDown
+    # Add vote to DB and set to a -1
   end
 
   private

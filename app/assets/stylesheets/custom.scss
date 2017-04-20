@@ -81,6 +81,23 @@ p {
   }
 }
 
+.logo-container {
+  padding-left: 30px;
+  padding-top: 5px;
+}
+.logo-container>a>img{
+  float:left;
+  width:100px;
+  padding-top: 3px;
+}
+.nav-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width:970px;
+}
+
 /* footer */
 
 footer {
@@ -221,4 +238,16 @@ input {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+.background-img>a>img{
+  padding-bottom:10px;
+  width: 100%;
+}
+.background-img {
+  text-align: center;
+}
+
+.container {
+     min-height: 500px;
 }

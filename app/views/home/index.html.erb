@@ -1,15 +1,22 @@
-<h1>NKUnet</h1>
-
-
+<!--<h1>NKUnet</h1>-->
+<div class="background-img">
+<%= link_to image_tag("background1.jpg", alt: "logo"),
+        '/' %>
+</div>
 <table>
     <tbody>
     <tr> 
-    <th width="30%">Subject</th>
-    <th width="70%">Title</th>
+    
+    <th width=5%>Vote</th>
+    <th></th>
+    <th width="27%">Subject</th>
+    <th width="68%">Title</th>
       
     </tr>
     <% @courses.each do |course| %>
       <tr>
+        <td><%= Vote.count_votes(post.forum_id) %></td>
+        <td><%= link_to '<span style="color:green">&#8593;</span>'.html_safe  %><br/><%= link_to '<span style="color:red">&#8595;</span>'.html_safe %></td>
         <span class="listing"> 
           <td><strong><h4><%= link_to course.name, course %></h4></strong></td>
           <td><h5><%= link_to course.name, course %></h5></td>
