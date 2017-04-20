@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       if admin_or_registrar
         redirect_to root_url
       else
-        redirect_to "/register_courses/#{user.id}"         #Register user's courses
+        redirect_to "/register_courses/#{user.id}/edit"         #Register user's courses
       end
     else
       # User failed to save -> reroute to login page and try again
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless  current_user.role == admin
     end
     
-    def registrar_or_admin(user)
+    def registrar_or_admin()
       redirect_to(root_url) unless current_user.admin? | current_user.registrar?
         
     
