@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <p3>[todo: author name/link]:</p3>
+  <p3><%= User.find(@post.user_id).name %>
   <strong><%= @post.title %></strong>
 </p>
 
@@ -15,12 +15,24 @@
     <tbody>
     <% @answers.each do |reply| %>
       <tr>
-        <td>0<%= %></td>
-        <td><%= link_to '<span style="color:green">&#8593;</span>'.html_safe  %><br/><%= link_to '<span style="color:red">&#8595;</span>'.html_safe %></td>
-        <td>[todo: author]!</td>
+        <td>
+          <%= link_to like_reply_path(reply), method: :put do %>
+            <span style="color:green">&#8593;</span>'
+            <%= reply.get_upvotes.size %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to dislike_reply_path(reply), method: :put do %>
+            <span style="color:red">&#8595;</span>
+            <%= reply.get_downvotes.size %>
+          <% end %>
+        </td>
+        <td><%= User.find(reply.user_id).name %></td>
         <td><%= reply.content %></td>
+        <% if current_user.admin? | current_user.id == reply.user_id %>
         <td><%= link_to 'Edit', edit_post_path(reply) %></td>
         <td><%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

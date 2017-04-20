@@ -55,7 +55,19 @@ class RepliesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def upvote 
+    @reply = Reply.find(params[:id])
+    @reply.upvote_by current_user
+    redirect_to :back
+  end
+    
+  def downvote 
+    @reply = Reply.find(params[:id])
+    @reply.downvote_by current_user
+    redirect_to :back
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reply
@@ -64,23 +76,16 @@ class RepliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reply_params
-      params.require(:reply).permit(:content, :post_id, :user_id)
+      x = params.require(:reply).
+      permit(:content, :post_id)
+      x.merge!(user_id: current_user.id)
+      return x
     end
     
     def update_params
       params.require(:reply).permit(:content)
     end
     
-  def upvote 
-    @reply = Reply.find(params[:id])
-    @reply.upvote_by current_user
-    redirect_to :back
-  end
-    
-  def upvote 
-    @reply = Reply.find(params[:id])
-    @reply.downvote_by current_user
-    redirect_to :back
-  end
+  
   
 end
