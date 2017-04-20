@@ -70,4 +70,17 @@ class RepliesController < ApplicationController
     def update_params
       params.require(:reply).permit(:content)
     end
+    
+  def upvote 
+    @reply = Reply.find(params[:id])
+    @reply.upvote_by current_user
+    redirect_to :back
+  end
+    
+  def upvote 
+    @reply = Reply.find(params[:id])
+    @reply.downvote_by current_user
+    redirect_to :back
+  end
+  
 end

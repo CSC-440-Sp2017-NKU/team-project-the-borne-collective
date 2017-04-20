@@ -7,15 +7,5 @@ class Reply < ApplicationRecord
     validates :post_id, presence: true, on: :create
     validates :user_id, presence: true, on: :create
     
-  def upvote 
-    @reply = Reply.find(params[:id])
-    @reply.upvote_by current_user
-    redirect_to :back
-  end
-    
-  def upvote 
-    @reply = Reply.find(params[:id])
-    @reply.downvote_by current_user
-    redirect_to :back
-  end
+
 end

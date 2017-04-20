@@ -53,13 +53,17 @@ class PostsController < ApplicationController
     redirect_to root_url
   end
   
-  def voteUp
-    # Add vote to DB and set to a 1
-  end
-  
-  def voteDown
-    # Add vote to DB and set to a -1
-  end
+   def upvote 
+     @post = Post.find(params[:id])
+     @post.upvote_by current_user
+     redirect_to :back
+   end
+   
+   def downvote
+     @post = Post.find(params[:id])
+     @post.downvote_by current_user
+     redirect_to :back
+   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
