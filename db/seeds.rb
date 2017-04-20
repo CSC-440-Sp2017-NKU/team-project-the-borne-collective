@@ -36,11 +36,11 @@ reply_b7 = Reply.create(content: "First reply on Jessee's third post", post_id: 
 reply_b8 = Reply.create(content: "Second reply on Jessee's third post", post_id: post_j3.id, user_id: borne.id)
 reply_b9 = Reply.create(content: "Third reply on Jessee's third post", post_id: post_j3.id, user_id: borne.id)
 
-CourseRecord.create(user_id: jessee.id, course_id: csc440.id, completed: true)
-CourseRecord.create(user_id: jessee.id, course_id: csc439.id, enrolled: true)
+CourseRecord.create(user_id: jessee.id, course_id: csc440.id, status: "completed")
+CourseRecord.create(user_id: jessee.id, course_id: csc439.id, status: "enrolled")
 
-CourseRecord.create(user_id: borne.id, course_id: csc440.id, teaching: true)
-CourseRecord.create(user_id: borne.id, course_id: csc439.id, has_taught: true)
+CourseRecord.create(user_id: borne.id, course_id: csc440.id, status: "teaching")
+CourseRecord.create(user_id: borne.id, course_id: csc439.id, status: "taught")
 
 
 

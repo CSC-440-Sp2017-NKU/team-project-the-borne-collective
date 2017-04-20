@@ -21,22 +21,26 @@ class CourseRegistrationsController < ApplicationController
   # PATCH/PUT /course_registrations/1.json
   def update
     @user = User.find(params[:id])
-    if @course_record.update_attributes(param_status)
-      flash[:danger] = "Error: You must select a proper enrollment type!"
-    
-    elsif @user.course_records.find_by(course_id: param_course_id).status != nil
-      course_record_exist = @user.course_records.find_by(course_id: param_course_id)
-      course_record_exist.update_attributes(update_params)
-      flash[:success] = "Courses registered successfully!"
+    existing_record = @user.course_records.find_by(user_id: @user.id, course_id: param_course_id)
+    # Update existing course record
+    if existing_record != nil
+      if existing_record.update_attributes(param_status)
+        flash[:success] = "Courses registered successfully!"
+      else
+        flash[:danger] = "Registration Error: check registration status and try again."
+      end
+      
+    # Create new course record  
     else
-      @course_record = CourseRecord.new
-      @course_record.user_id = @user.id
-      @course_record.update_attributes(update_params)
-      flash[:success] = "Courses registered successfully!"
-      @course_record.save 
+      new_record = CourseRecord.new(update_params())
+      if new_record.save
+        flash[:success] = "Courses registered successfully!"
+      else
+        flash[:danger] = "Registration Error: check registration status and try again."
+        new_record.errors.full_messages
+      end
     end 
     
-    @user = User.find(params[:id])
     @courses = Course.all
     @course_record = CourseRecord.new
     render 'edit'
@@ -59,15 +63,22 @@ class CourseRegistrationsController < ApplicationController
     end
 
     
-    def update_params
-      params.require(:course_record).permit(:course_id, :status)
+    def update_params()
+        x = params.require(:course_record).
+            permit(:course_id, :status)
+        x.merge!(user_id: @user.id)
+        return x
+        
     end
     
     def param_course_id
-      params.permit(:course_id)
+       permitted_params = params.require(:course_record).permit(:course_id)
+       return permitted_params[:course_id]
     end
     
     def param_status
-      params.require(:course_record).permit(status: Parameter.enum("enrolled", "has_taught"))
+      return params.require(:course_record).permit(:status)
+      
     end
+    
 end

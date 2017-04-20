@@ -18,10 +18,7 @@ ActiveRecord::Schema.define(version: 20170418235639) do
   create_table "course_records", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
-    t.boolean "enrolled",   default: false
-    t.boolean "completed",  default: false
-    t.boolean "teaching",   default: false
-    t.boolean "has_taught", default: false
+    t.integer "status"
     t.index ["course_id"], name: "index_course_records_on_course_id", using: :btree
     t.index ["user_id"], name: "index_course_records_on_user_id", using: :btree
   end

@@ -1,26 +1,22 @@
 <div class="form-group row custom align-middle">
-  <% courseRelation = set_button(@user.id, course.id) %>
   <% @course_record = CourseRecord.new %>
   <%= form_for(@course_record, :url => "/register_courses/#{@user.id}") do |f| %>
+      <%= render 'shared/error_messages' %>
   
  
     <div class="col-6 col-md-6 row ">
       <h4 class="col-form-label"><%= course.name %>
-      <%= f.hidden_field :course_id, value: course.id %>
+      <%= f.hidden_field :course_id, value: course.id, class: "form-control" %>
     </div>
     
     <div class="col col-md-3 row registerCustom">
-      <%= f.select :enrolled, options_for_select([["enrolled", true], ["completed", true], ["teaching", true], ["has_taught", true]]), id: "myselect" %>
+      <%= f.select(:status, CourseRecord.statuses.keys)  %>
+
       
     </div>
     <div class="col-6 col-md-3 row registerCustom2">
-      
-      <% if courseRelation[0] !=  "" %>
-        <% courseRelation[1] = "btn btn-" + courseRelation[1] %>
-        <% courseRelation[0] = courseRelation[0] + ": Update" %>
-        <input class="<%= courseRelation[1] %>" type="submit" value="<%= courseRelation[0] %>" >
-      <% else %>
-        <input class="btn btn-secondary" type="submit" value="Assign association">
+      <% if  (button_attrs = get_button_attrs(@user.id, course.id)) != nil %>
+        <%= f.submit button_attrs[0], class: button_attrs[1], type: "submit" %>
       <% end %>
     </div>
   <% end %>
