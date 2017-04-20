@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   resources :replies
   resources :posts
   get 'home/index'
+  get  'application/management'
 
   root 'home#index'
+  root 'application#management'
   
 #                                - resources :[MODEL] route table -
 #------------------------------------------------------------------------------------------
