@@ -20,9 +20,12 @@ Course.create(name: "CSC 260: Object Oriented Programming I",     description: "
 
 
 
-post_j  = Post.create(content: "Sample Post One from Jesseee", title: "Title of Sample Post One from Jessee", user_id: jessee.id, course_id: csc440.id)
-post_j2 = Post.create(content: "Sample Post two from Jesseee", title: "Title of Sample Post two from Jessee", user_id: jessee.id, course_id: csc440.id)
-post_j3 = Post.create(content: "Sample Post thress from Jesseee", title: "Title of Sample Post three from Jessee", user_id: jessee.id, course_id: csc440.id)
+post_j  = Post.create(content: "", title: "Who was the worst candidate you interviewed for software developer role?", 
+                      user_id: jessee.id, course_id: csc440.id)
+post_j2 = Post.create(content: "Sample Post two from Jesseee", title: "Which programmer do you hire: the one who programs a messy program in three hours or the other who does a well-structured program in twelve?", user_id: jessee.id, course_id: csc440.id)
+post_j3 = Post.create(content: "My wife and I had a son about 3 months ago. We agreed that Peekaboo would be a cute baby name, so that is what we named him. Ever since then, people have been calling us bad parents and various other things. I don’t feel that it is any of their business what we name our child.", 
+                      title: "Which programmer do you hire: the one who programs a messy program in three hours or the other who does a well-structured program in twelve?", 
+                      user_id: jessee.id, course_id: csc440.id)
 
 reply_b = Reply.create(content: "First reply on Jessee's first post", post_id: post_j.id, user_id: borne.id)
 reply_b2 = Reply.create(content: "Second reply on Jessee's first post", post_id: post_j.id, user_id: borne.id)

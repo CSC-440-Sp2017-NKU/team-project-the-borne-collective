@@ -1,0 +1,26 @@
+<div class="card col-md-7">
+  <div class="card-block question">
+    <%= link_to post do %>
+      <h3 class="card-title"><%= post.title %></h3>
+    <% end %>
+    <p class="card-subtitle text-muted">
+      <% if post.content.size > 200 %>
+        <%= post.content[0, 199] %>
+        <%= link_to "...(more)", post %>
+      <% else %>
+        <%= post.content %>
+      <% end %>
+    </p>
+    <%= link_to( gravatar_for(User.find(post.user_id), size: 50), User.find(post.user_id)) %><span>asked <%= humanizeDateTime(post.created_at) %></span>
+    <div id="vote_arrows">
+      <%= link_to like_post_path(post), class: "btn btn-default", method: :put do %>
+        <span style="color:green" class="glyphicon glyphicon-arrow-up"></span>&nbsp<%= post.get_upvotes.size %>
+      <% end %>
+      <%= link_to dislike_post_path(post), class: "btn btn-default", method: :put do %>
+        <span style="color:red" class="glyphicon glyphicon-arrow-down"></span>&nbsp<%= post.get_downvotes.size %>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+</div>
+

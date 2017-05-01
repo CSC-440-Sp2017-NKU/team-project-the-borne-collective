@@ -1,39 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <p3><%= User.find(@post.user_id).name %>
-  <strong><%= @post.title %></strong>
-</p>
-
-<p>
-  <%= @post.content %>
-</p>
-
-<h2 padding-left="100px" ><u><%= link_to "Submit An Answer!", "/replies/new?parent=#{@post.id}" %></u></h2>
-
-<table>
-    <tbody>
-    <% @answers.each do |reply| %>
-      <tr>
-        <td>
-          <%= link_to like_reply_path(reply), method: :put do %>
-            <span style="color:green">&#8593;</span>'
-            <%= reply.get_upvotes.size %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to dislike_reply_path(reply), method: :put do %>
-            <span style="color:red">&#8595;</span>
-            <%= reply.get_downvotes.size %>
-          <% end %>
-        </td>
-        <td><%= User.find(reply.user_id).name %></td>
-        <td><%= reply.content %></td>
-        <% if current_user.admin? | current_user.id == reply.user_id %>
-        <td><%= link_to 'Edit', edit_post_path(reply) %></td>
-        <td><%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="card col-md-6">
+    <div class="card-block question">
+      <h3 class="card-title"><%= @post.title %></h3>
+      <p class="card-subtitle text-muted">
+          <%= @post.content %>
+      </p>
+      <%= link_to( gravatar_for(User.find(@post.user_id), size: 50), User.find(@post.user_id)) %><span>asked <%= humanizeDateTime(@post.created_at) %></span>
+      <div id="vote_arrows">
+        <%= link_to like_post_path(@post), class: "btn btn-default", method: :put do %>
+          <span style="color:green" class="glyphicon glyphicon-arrow-up"></span>&nbsp<%= @post.get_upvotes.size %>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <%= link_to dislike_post_path(@post), class: "btn btn-default", method: :put do %>
+          <span style="color:red" class="glyphicon glyphicon-arrow-down"></span>&nbsp<%= @post.get_downvotes.size %>
+        <% end %>
+      </div>
+    </div>
+    <hr style="border-style:dotted">
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  
+  <% @answers.each do |reply| %>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <%= render partial: 'replies/listing', locals: {reply: reply} %>
+      <% if current_user.admin? | current_user.id == reply.user_id %>
+        <%= link_to 'Edit', edit_post_path(reply) %>
+        <%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+      <div class="colmd-3"></div>
+    </div>
+  <% end %>  
+</div>
