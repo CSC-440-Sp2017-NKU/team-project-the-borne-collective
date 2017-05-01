@@ -1,9 +1,18 @@
-/*  Temporary scss rules courtesy of Michael Hart, author of https://www.railstutorial.org/book/    
-    Take from Chapter 1-10, upto figure 10.39
+/*  
 */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+@font-face {
+  font-family: "Arvo";
+  src: url ('https://fonts.googleapis.com/css?family=Arvo:700');
+}
+
+@font-face {
+  font-family: 'Inknut Antiqua';
+  src: url ('https://fonts.googleapis.com/css?family=Inknut+Antiqua:900');
+}
 
 /* mixins, variables, etc. */
 
@@ -18,6 +27,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
+  margin-right: 0px;
   padding-top: 60px;
 }
 
@@ -42,6 +52,16 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
+hr {
+    display: block;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
@@ -60,7 +80,7 @@ h2 {
 
 p {
   font-size: 1.1em;
-  line-height: 1.7em;
+  line-height: 1.2em;
 }
 
 
@@ -95,13 +115,16 @@ p {
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
-    width:970px;
+  
+    a {
+      font-size: 1.2em;
+    }
+    
 }
 
 /* footer */
 
 footer {
-  margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
@@ -152,32 +175,71 @@ aside {
   }
 }
 
-.sidebarSection{
-  background-color: #fff;
+.course_content {
+  padding-right: 20px;
 }
-.memberHeader{
-  height: 8%;
+
+.bdGrid {
+   margin-right: 0px;
+   margin-left: 0px;
+   padding-left: 15px;
+   padding-right: 0px; 
 }
-.memberOptions{
-  height: 4%;
-}
-.memberList{
-  height: 72%;
-}
-.memberEntry{
-  height: 8%;
+
+/* Sidebar member list*/
+.sBar {
+  float: right;
+  border-width: 1px;
+  border-color: black;
+  height: 100%;
+  padding-left: 0px;
   
-}
-.memberEntryLeft {
-  width: 30%;
-  height: 8%;
-}
-.memberEntryRight {
-  width: 70%;
-  height: 8%;
-}
-.memberOther{
   
+
+
+  .member_th{
+    height: 8%;
+    background-color: #fff;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    width: 100%;
+    padding-left: 0px;
+  }
+  .type{
+    height: 4%;
+    background-color: #fff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    width: 100%;
+    padding-left: 0px;
+  }
+  .memberList{
+    height: 72%;
+  }
+  .memberEntry{
+    height: 8%;
+    background-color: #fff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    
+  
+    .entryIcon {
+      width: 30%;
+      height: 8%;
+    }
+    .entryDesc {
+      width: 70%;
+      height: 8%;
+      
+      background-color: #fff;
+    }
+  }
+  .other{
+    
+  }
 }
 
 
@@ -188,6 +250,31 @@ aside {
 
 .gravatar_edit {
   margin-top: 15px;
+}
+
+/* Course question listing */
+
+.question {
+  h3 {
+  	font-family: 'Inknut Antiqua', serif;
+	  font-size: 18px;
+	  font-style: normal;
+	  font-variant: normal;
+	  font-weight: 700;
+	  line-height: 1.3;
+  }
+
+  .listing {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 5px;
+  }
+  
+  a:link, a:visited { 
+    color: black;
+    cursor: auto;
+  }
 }
 
 /* forms */
@@ -286,8 +373,4 @@ input {
 }
 .background-img {
   text-align: center;
-}
-
-.container {
-     min-height: 500px;
 }

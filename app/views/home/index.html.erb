@@ -1,52 +1,29 @@
 <!--<h1>NKUnet</h1>-->
-<div class="background-img">
-<%= link_to image_tag("background1.jpg", alt: "logo"),
-        '/' %>
-</div>
-<table>
-    <tbody>
-    <tr> 
-    
-    <th width=5%>Vote</th>
-    <th></th>
-    <th width="27%">Course</th>
-    <th width="68%">Title</th>
-      
-    </tr>
-    <% Post.all[1..10].each do |post| %>
-      <tr>
-        <td>
-            <%= link_to like_post_path(post), method: :put do %>
-             '<span style="color:green">&#8593;</span>'
-              <%= post.get_upvotes.size %>
-            <% end %>
-        </td>
-        <td>
-            <%= link_to dislike_post_path(post), method: :put do %>
-               <span style="color:red">&#8595;</span>
-             <%= post.get_downvotes.size %>
-            <% end %>
-        </td>
-
-        <span class="listing"> 
-          <td><strong><h4><%= link_to Course.find(post.course_id).name, post %></h4></strong></td>
-          <td><h5><%= link_to post.title, post %></h5></td>
-        </span>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<strong><h2>Courses:</h2></strong>
-<table>
-    <tbody>
+<div class="container-fluid">
+  <div class="row"> 
+    <div class="col-md-2"></div>
+    <div class="background-img col-md-8">
+    <%= link_to image_tag("background1.jpg", alt: "logo"), '/' %>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  
+  
+  <% Post.all.each do |post| %>
+    <div class="row listing"> 
+      <div class="col-md-3"></div>
+      <%= render post %>
+      <div class="col-md-3"></div>
+    </div>
+  <% end %>
+  
+  <strong><h2>Courses:</h2></strong>
     <% @courses.each do |course| %>
-      <tr>
-        <span class="listing"> 
-          <td><strong><h4><%= link_to  course.name, course %></h4></strong></td>
-        </span>
-      </tr>
+      <div class="row listing"> 
+        <div class="col-md-2"></div>
+        <span class="col-md-7"><strong><h4><%= link_to  course.name, course %></h4></strong></span>
+        <div class="col-md-3"></div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+
+</div>
