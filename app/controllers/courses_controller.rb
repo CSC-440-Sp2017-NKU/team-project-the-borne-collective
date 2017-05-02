@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
-    @subject_posts = @course.posts
+    @posts = @course.posts
   end
 
   # GET /courses/new

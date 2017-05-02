@@ -67,6 +67,9 @@ group :development do
   
   gem 'spring-watcher-listen', '~> 2.0.0'
   
+  # Format ERB
+  gem 'htmlbeautifier'
+  
   gem 'byebug', platform: :mri
 end
 

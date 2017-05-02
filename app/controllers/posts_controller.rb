@@ -14,6 +14,11 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    if params.has_key?(:course)
+      @post.course_id = params[:course]
+    else 
+      redirect_to root_url
+    end
   end
 
   # GET /posts/1/edit
@@ -23,6 +28,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    @user = current_user
     @post = Post.new(post_params)
 
     if @post.save
@@ -73,7 +79,9 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :user_id, :course_id)
+      x = params.require(:post).permit(:title, :content, :course_id)
+      x.merge!(user_id: current_user.id)
+      return x
     end
     
     # Ensure correct user is updating their own post (or admin)

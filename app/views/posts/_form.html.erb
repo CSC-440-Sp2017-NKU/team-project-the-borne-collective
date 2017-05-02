@@ -21,18 +21,10 @@
     <%= f.text_area :content %>
   </div>
 
-  <% if params[:course] %><input type="hidden" id="course_id" name="post[course_id]" value="<%= params[:course] %>" /><% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-  
-   <%= link_to like_post_path(@post), method: :put do %>
-    Upvote
-      <%= @post.get_upvotes.size %>
-    <% end %>
+  <%= f.hidden_field :course_id, :value => post.course_id %>
 
-    <%= link_to dislike_post_path(@post), method: :put do %>
-      Downvote
-      <%= @post.get_downvotes.size %>
-    <% end %>
+  
+  <div class="actions">
+    <%= f.submit class: "custom_submit" %>
+  </div>
 <% end %>
