@@ -1,8 +1,7 @@
 <div class="container-fluid">
   <p id="notice"><%= notice %></p>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="card col-md-6">
+    <div class="card col-md-6 col-md-offset-3">
     <div class="card-block question">
       <h3 class="card-title"><%= @post.title %></h3>
       <p class="card-subtitle text-muted">
@@ -18,11 +17,18 @@
         <% end %>
       </div>
     </div>
-    <hr style="border-style:dotted">
+    <hr style="border-style:dotted;margin-bottom:50px">
     </div>
     <div class="col-md-3"></div>
   </div>
   
+  <div class="row">
+    <div class="col-md-1 col-md-offset-8">
+      <%= link_to "Submit Answer!", "/replies/new?post=#{@post.id}", class: "btn btn-default custom_submit" %>
+    </div>
+  </div>
+
+      
   <% @answers.each do |reply| %>
     <div class="row">
       <div class="col-md-3"></div>
@@ -31,7 +37,6 @@
         <%= link_to 'Edit', edit_post_path(reply) %>
         <%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
-      <div class="colmd-3"></div>
     </div>
   <% end %>  
 </div>

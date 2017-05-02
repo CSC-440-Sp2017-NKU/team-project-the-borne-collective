@@ -1,5 +1,9 @@
-<h1>New Reply</h1>
-
-<%= render 'form', reply: @reply %>
-
-<br><br><%= link_to 'Back', "/posts/#{params[:parent]}" %>
+<div class="container-fluid">
+  <div class="col-md-3"></div>
+  <% op = Post.find(@reply.post_id) %>
+  <%= render partial: "posts/post", locals: {post: op} %>
+  <div class="col-md-6 col-md-offset-3">
+    <%= render 'form', reply: @reply %>
+  </div>
+</div>
+<br><br><%= link_to 'Back', "/posts/#{params[:post]}" %>

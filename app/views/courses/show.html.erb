@@ -2,14 +2,13 @@
   <div class="row">
     <div class="col-md-10 course_content">
       <div class="row">
-        <div class="col-md-2"></div>
-        <h3 class="col-md-6"><strong><%= @course.name %></strong></h3>
+        <h3 class="col-md-6 col-md-offset-2"><strong><%= @course.name %></strong></h3>
         <div class"col-md-2"></div>
       </div>
       <div class="row">
         <div class="col-md-7"></div>
         <div class="col-md-2">
-          <%= link_to "Submit Question!", "/posts/new?course=#{@course.id}&subj=#{@course.name}", class: "btn btn-default custom_submit" %>
+          <%= link_to "Submit Question!", "/posts/new?course=#{@course.id}", class: "btn btn-default custom_submit" %>
         </div>
         <div class"col-md-1"></div>
       </div>
@@ -23,6 +22,6 @@
         </div>
       <%  end %>
     </div>
-    <%= render "sidebar" %>
+    <%#= render "sidebar" %>
   </div>
 </div>

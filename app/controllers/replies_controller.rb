@@ -15,6 +15,11 @@ class RepliesController < ApplicationController
   # GET /replies/new
   def new
     @reply = Reply.new
+    if params.has_key?(:post)
+      @reply.post_id = params[:post]
+    else 
+      redirect_to root_url
+    end
   end
 
   # GET /replies/1/edit
@@ -24,14 +29,16 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.json
   def create
-    @reply = Reply.new(reply_params)
+    reply = Reply.new(reply_params)
 
-    if @reply.save
+    if reply.save
       flash[:success] = "Reply created successfully!"
-      redirect_to post_path(Post.find(@reply.post_id))
+      redirect_to post_path(Post.find(reply.post_id))
     else
       flash.now[:danger] = 'Invalid Reply'
-      render 'new'
+      redirect_to "replies/new?post=#{reply_params[:post_id]}"
+      #redirect_to "/replies/new?post=#{@reply.post_id}"
+      #redirect_to :action => 'new', :post => @reply.post_id
     end
   end
 
@@ -76,8 +83,7 @@ class RepliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reply_params
-      x = params.require(:reply).
-      permit(:content, :post_id)
+      x = params.require(:reply).permit(:content, :post_id)
       x.merge!(user_id: current_user.id)
       return x
     end
