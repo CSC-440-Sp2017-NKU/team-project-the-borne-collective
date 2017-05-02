@@ -14,6 +14,11 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    if params.has_key?(:course)
+      @post.course_id = params[:course]
+    else 
+      redirect_to root_url
+    end
   end
 
   # GET /posts/1/edit
