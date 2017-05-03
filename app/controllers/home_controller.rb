@@ -5,4 +5,12 @@ class HomeController < ApplicationController
     @posts = Post.all
     @courses = Course.all
   end
+  
+  def search
+    @query = Post.search do
+        fulltext params[:q]
+    end
+    @products = @query.results
+  end
+  
 end

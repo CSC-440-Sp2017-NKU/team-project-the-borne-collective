@@ -66,11 +66,11 @@ class PostsController < ApplicationController
      redirect_to :back
    end
    
-   def downvote
-     @post = Post.find(params[:id])
-     @post.downvote_by current_user
-     redirect_to :back
-   end
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_by current_user
+    redirect_to :back
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

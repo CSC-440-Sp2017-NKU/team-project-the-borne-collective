@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <% @products.each do |post| %>
+      <div class="row listing"> 
+      <div class="col-md-3"></div>
+      <%= render post %>
+      <div class="col-md-3"></div>
+      </div>
+  <% end %>
+
+</div>

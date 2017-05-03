@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   post   '/register_courses/:id',        to: 'course_registrations#update'
   delete '/register_courses/:id',        to: 'course_registrations#destroy'
   
+  get '/search', to: 'home#search'
+  post '/search', to: 'home#search'
+  
   
   
   resources :users
