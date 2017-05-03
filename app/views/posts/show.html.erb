@@ -33,7 +33,7 @@
     <div class="row">
       <div class="col-md-3"></div>
       <%= render partial: 'replies/listing', locals: {reply: reply} %>
-      <% if current_user.admin? | current_user.id == reply.user_id %>
+      <% if current_user != nil && (current_user.admin? | current_user.id == reply.user_id) %>
         <%= link_to 'Edit', edit_post_path(reply) %>
         <%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
