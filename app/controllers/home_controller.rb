@@ -2,8 +2,28 @@ class HomeController < ApplicationController
     before_action :logged_in_user, only: [:search]
   # [todo] Dynamically pass top Post based on rating when implemented
   def index
-    @posts = Post.all
+    @posts = Post.where("created_at >= ?", 1.week.ago.utc)
+    
+    @top_post = Post.where(["created_at >= ?", 1.week.ago.utc ]).order("cached_votes_up DESC, created_at DESC")
+    
+    
     if logged_in?
+      @top_post = Array.new
+      
+      # Get user's courses id to limit Post
+      user_courses = Array.new
+      current_user.course_records.each do |record|
+        user_courses.push(record[:course_id])
+      end
+      
+      Post.where("created_at >= ?", 1.week.ago.utc).order("cached_votes_up DESC, created_at DESC").each do |post|
+        if user_courses.include?(post.course_id)
+          @top_post.push(post)
+        end
+      end
+      
+      
+      
       @active_courses  = Array.new
       @inactive_courses = Array.new
       current_user.course_records.each do |record|

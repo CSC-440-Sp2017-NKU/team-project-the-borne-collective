@@ -8,8 +8,7 @@
     <div class="col-md-2"></div>
   </div>
   
-  
-  <% Post.all.each do |post| %>
+  <% @top_post.each do |post| %>
     <div class="row listing"> 
       <div class="col-md-3"></div>
       <%= render post %>

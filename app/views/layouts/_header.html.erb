@@ -8,7 +8,7 @@
           </div>
         </li>
         <% if current_user != nil %>
-            <li class="col-sm-3 col-md-3 col-sm-3 col-md-offset-5">
+            <li class="col-sm-3 col-md-3 col-md-offset-4">
               <%= form_tag('/search', class: "navbar-form") do %>
                   <div class="input-group">
                     <%= text_field_tag('q', params[:q], :size => 150, :placeholder=> "Search Questions", class: "form-control") %>
