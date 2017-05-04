@@ -2,8 +2,6 @@ class HomeController < ApplicationController
     before_action :logged_in_user, only: [:search]
   # [todo] Dynamically pass top Post based on rating when implemented
   def index
-    @posts = Post.where("created_at >= ?", 1.week.ago.utc)
-    
     @top_post = Post.where(["created_at >= ?", 1.week.ago.utc ]).order("cached_votes_up DESC, created_at DESC")
     
     
@@ -36,6 +34,8 @@ class HomeController < ApplicationController
     else
       @courses = Course.all
     end
+    
+    @top_post = @top_post.paginate(:page => params[:page], :per_page => 5)
   end
   
   def search
