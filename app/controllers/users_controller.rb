@@ -15,6 +15,27 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @upvotes = 0
+    @downvotes = 0
+    @active_courses  = Array.new
+    @user.course_records.where(status: "enrolled").each do |record|
+      @active_courses.push(Course.find(record[:course_id]))
+    end
+        @user.course_records.where(status: "teaching").each do |record|
+      @active_courses.push(Course.find(record[:course_id]))
+    end
+    
+    @user.posts.each do |post|
+      @upvotes += post.get_upvotes.size
+      @downvotes += post.get_downvotes.size
+    end
+    
+    @user.replies.each do |reply|
+      @upvotes += reply.get_upvotes.size
+      @downvotes += reply.get_downvotes.size
+    end
+    
+
   end
   
   def create

@@ -343,8 +343,13 @@ input {
   filter: alpha(opacity=20);
   opacity: .7;
 }
-
-
+/* User Profile */
+.reply-listing {
+  a:link, a:visited { 
+    color: black;
+    cursor: auto;
+  }
+}
 /* Users index */
 
 .users {

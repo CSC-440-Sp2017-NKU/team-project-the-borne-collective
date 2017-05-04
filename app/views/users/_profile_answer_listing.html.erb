@@ -1,0 +1,22 @@
+
+    <div class="card-block reply reply-listing">
+      <% if reply.content.size > 200 %>
+        <%= link_to Post.find(reply.post_id) do %>
+          <p class="card-subtitle"><%= reply.content[0, 199] + "...(more)"%></p>
+        <% end %>
+      <% else %>
+        <%= link_to Post.find(reply.post_id) do %>
+          <p class="card-subtitle"><%= reply.content %></p>
+        <% end %>
+      <% end %>
+      <%= link_to( gravatar_for(User.find(reply.user_id), size: 50), User.find(reply.user_id)) %><span>asked <%= humanizeDateTime(reply.created_at) %></span>
+      <div id="vote_arrows">
+        <%= link_to like_reply_path(reply), class: "btn btn-default", method: :put do %>
+          <span style="color:green" class="glyphicon glyphicon-arrow-up"></span>&nbsp<%= reply.get_upvotes.size %>
+        <% end %>
+        <%= link_to dislike_reply_path(reply), class: "btn btn-default", method: :put do %>
+          <span style="color:red" class="glyphicon glyphicon-arrow-down"></span>&nbsp<%= reply.get_downvotes.size %>
+        <% end %>
+      </div>
+    </div>
+    <hr>
