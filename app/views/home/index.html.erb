@@ -17,13 +17,72 @@
     </div>
   <% end %>
   
-  <strong><h2>Courses:</h2></strong>
-    <% @courses.each do |course| %>
-      <div class="row listing"> 
-        <div class="col-md-2"></div>
-        <span class="col-md-7"><strong><h4><%= link_to  course.name, course %></h4></strong></span>
-        <div class="col-md-3"></div>
-      </div>
-    <% end %>
+  <% if logged_in? %>
+    <div class="row">
+    	<div class="col-md-6 col-md-offset-3">
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">Current Courses</a></li>
+                            <li><a href="#tab2default" data-toggle="tab">Previous Courses</a></li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1default">
+                          <% if @active_courses.empty? %>
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <h4>No active courses</h4>
+                              </div>
+                            </div>
 
+                          <% else %>
+                            <% @active_courses.each do |course| %>
+                              <%= render partial: 'home/course_listing', locals: {course: course} %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                        <div class="tab-pane fade" id="tab2default">
+                          <% if @inactive_courses.empty? %>
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <h4>No previous courses</h4>
+                              </div>
+                            </div>
+                          <% else %>
+                            <% @inactive_courses.each do |course| %>
+                              <%= render partial: 'home/course_listing', locals: {course: course} %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+	</div>
+	<% else %>
+	   <div class="row">
+    	<div class="col-md-6 col-md-offset-3">
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">Courses</a></li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1default">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <h4>Log in to view courses</h4>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+	</div>
+  <% end %>
 </div>

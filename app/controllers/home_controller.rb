@@ -3,7 +3,19 @@ class HomeController < ApplicationController
   # [todo] Dynamically pass top Post based on rating when implemented
   def index
     @posts = Post.all
-    @courses = Course.all
+    if logged_in?
+      @active_courses  = Array.new
+      @inactive_courses = Array.new
+      current_user.course_records.each do |record|
+        if (record[:status] == "enrolled") | (record[:status] == "teaching")
+          @active_courses.push(Course.find(record[:course_id]))
+        else
+          @inactive_courses.push(Course.find(record[:course_id]))
+        end
+      end
+    else
+      @courses = Course.all
+    end
   end
   
   def search
