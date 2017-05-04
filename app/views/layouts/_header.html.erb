@@ -6,47 +6,49 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user != nil %>
-        <li class="col-sm-3 col-md-3 col-md-offset-6">
-          <%= form_tag('/search', class: "navbar-form") do %>
-            <div class="input-group">
-              <%= text_field_tag('q', params[:q], :size => 150, :placeholder=> "Search Questions", class: "form-control") %>
-              <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-              </div>
-            </div>
-          <% end %>
-        </li>
+            <li class="col-sm-3 col-md-3 col-md-offset-6">
+              <%= form_tag('/search', class: "navbar-form") do %>
+                  <div class="input-group">
+                    <%= text_field_tag('q', params[:q], :size => 150, :placeholder=> "Search Questions", class: "form-control") %>
+                    <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                  </div>
+              <% end %>
+            </li>
         <% end %>
         <li><%= link_to root_path do %>
-            <span class="glyphicon glyphicon-home"></span>&nbspHome
+              <span class="glyphicon glyphicon-home"></span>&nbspHome
           <% end %>
         </li>
         <% if logged_in? %>
-          <li>
-            <%= link_to users_path do %>
-              <span class="glyphicon glyphicon-list-alt"></span>&nbspUsers
-            <% end %>
-          </li>
-          <li class="dropdown">
-            <%= link_to '#', :class => "dropdown-toggle", :"data-toggle" => "dropdown" do %>
-              <span class="glyphicon glyphicon-user"></span>&nbspAccount
-            <% end %>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", '#' %></li>
-              <li><%= link_to "Create User", new_user_path %></li>
-              <li><%= link_to "Create Course", new_course_path %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "Log out", logout_path, method: "delete" %>
-              </li>
-            </ul>
-          </li>
+            <li>
+              <%= link_to users_path do %>
+                  <span class="glyphicon glyphicon-list-alt"></span>&nbspUsers
+              <% end %>
+            </li>
+            <li class="dropdown">
+              <%= link_to '#', :class => "dropdown-toggle", :"data-toggle" => "dropdown" do %>
+                  <span class="glyphicon glyphicon-user"></span>&nbspAccount
+              <% end %>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Settings", '#' %></li>
+                <% if current_user.admin? || current_user.registrar? %>
+                    <li><%= link_to "Create User", new_user_path %></li>
+                    <li><%= link_to "Create Course", new_course_path %></li>
+                <% end %>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Log out", logout_path, method: "delete" %>
+                </li>
+              </ul>
+            </li>
         <% else %>
-          <li><%= link_to login_path do %>
-              <span class="glyphicon glyphicon-log-in"></span>&nbspLogin
-            <% end %>
-          </li>
+            <li><%= link_to login_path do %>
+                  <span class="glyphicon glyphicon-log-in"></span>&nbspLogin
+              <% end %>
+            </li>
         <% end %>
       </ul>
     </nav>
