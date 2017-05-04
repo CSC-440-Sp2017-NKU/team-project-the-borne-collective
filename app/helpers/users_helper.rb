@@ -16,7 +16,7 @@ module UsersHelper
   def reputation_for(upvotes, downvotes) 
     if downvotes == 0
       return content_tag(:h4, "Good Poster!", style: "color:green")
-    elsif upvotes < 5
+    elsif (upvotes + downvotes) < 5
       return content_tag(:h4, "New Poster", style: "color:green")
     else
       vote_ratio = downvotes / upvotes.to_f

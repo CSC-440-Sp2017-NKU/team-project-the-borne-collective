@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @upvotes = 0
     @downvotes = 0
+    @replies = @user.replies.paginate(:page => params[:page], :per_page => 4)
     @active_courses  = Array.new
     @user.course_records.where(status: "enrolled").each do |record|
       @active_courses.push(Course.find(record[:course_id]))

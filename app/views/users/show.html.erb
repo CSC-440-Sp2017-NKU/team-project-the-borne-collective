@@ -58,12 +58,14 @@
   </div>
   <div class="col-md-5 ">
     <h3>Recent Answers</h3>
-    <% if @user.replies.count == 0 %>
+    <% if @replies.count == 0 %>
       <h4>User has Zero answers</h4>
     <% else %>
-      <% @user.replies.each do |reply| %>
-        <%= render partial: 'users/profile_answer_listing', locals: {reply: reply} %>
-      <% end %>
+      <% will_paginate @replies %>
+        <% @replies.each do |reply| %>
+          <%= render partial: 'users/profile_answer_listing', locals: {reply: reply} %>
+        <% end %>
+      <%= will_paginate @replies %>
     <% end %>
     
   </div>
