@@ -14,8 +14,9 @@ gem 'faker',                   '1.6.6'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+
+# Extends active record to include search functionality
+gem 'textacular', require: 'textacular/rails'
 
 gem 'acts_as_votable', '~> 0.10.0'
 #
