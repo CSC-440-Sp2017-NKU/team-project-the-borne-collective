@@ -7,10 +7,7 @@ class HomeController < ApplicationController
   end
   
   def search
-    query = Post.search do
-        fulltext params[:q]
-    end
-    @results = query.results
+    @results = Post.basic_search(title: params[:q])
   end
   
   private
