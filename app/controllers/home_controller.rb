@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
   
   def search
-    @results = Post.basic_search(content: params[:q])
+    @results = Post.basic_search(title: params[:q])
   end
   
   private
