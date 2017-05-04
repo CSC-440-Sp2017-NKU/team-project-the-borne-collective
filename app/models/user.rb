@@ -1,5 +1,11 @@
 class User < ApplicationRecord
+  acts_as_voter
   attr_accessor :remember_token
+  has_many :course_records
+  has_many :courses, :through => :course_records
+  has_many :posts
+  has_many :replies
+  
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length:  { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

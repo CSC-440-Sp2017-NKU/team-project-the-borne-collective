@@ -1,0 +1,18 @@
+
+<div class="container">
+    <% @courses.each do |course| %>
+      <%= render course %>
+    <% end %>
+    <div class="col col-md-12 row registerCustom" ></div>
+    <div class="col col-md-9 row registerCustom">
+      
+    </div>
+    <div class="col-6 col-md-6 row "></div>
+</div>
+    <div class="col col-md-3 row">
+    <%= button_tag(:type => 'button', class: "col col-md-6 row btn btn-secondary-lg custom_submit")  do %>
+      <%= link_to "Back to home", root_url %>
+      <div class="col col-md-3 row">
+    <% end %>
+
+

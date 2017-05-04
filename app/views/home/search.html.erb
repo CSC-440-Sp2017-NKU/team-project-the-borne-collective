@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <% if @results.empty? %>
+      <div class="row listing"> 
+        <div class="col-md-3 col-offset-3"></div>
+        <h1>Sorry, No results found.</h1>
+      </div>
+  <% else %>
+  
+    <% @results.each do |post| %>
+      <div class="row listing"> 
+        <div class="col-md-3"></div>
+        <%= render post %>
+        <div class="col-md-3"></div>
+      </div>
+    <% end %>
+  
+  <% end %>
+</div>

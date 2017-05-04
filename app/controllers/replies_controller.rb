@@ -1,4 +1,5 @@
 class RepliesController < ApplicationController
+  before_action :logged_in_user, only: [:new, :edit, :create, :update, :upvote, :downvote ]
   before_action :set_reply, only: [:show, :edit, :update, :destroy]
 
   # GET /replies
@@ -15,6 +16,11 @@ class RepliesController < ApplicationController
   # GET /replies/new
   def new
     @reply = Reply.new
+    if params.has_key?(:post)
+      @reply.post_id = params[:post]
+    else 
+      redirect_to root_url
+    end
   end
 
   # GET /replies/1/edit
@@ -24,14 +30,16 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.json
   def create
-    @reply = Reply.new(reply_params)
+    reply = Reply.new(reply_params)
 
-    if @reply.save
+    if reply.save
       flash[:success] = "Reply created successfully!"
-      redirect_to post_path(Post.find(@reply.post_id))
+      redirect_to post_path(Post.find(reply.post_id))
     else
       flash.now[:danger] = 'Invalid Reply'
-      render 'new'
+      redirect_to "replies/new?post=#{reply_params[:post_id]}"
+      #redirect_to "/replies/new?post=#{@reply.post_id}"
+      #redirect_to :action => 'new', :post => @reply.post_id
     end
   end
 
@@ -55,7 +63,19 @@ class RepliesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def upvote 
+    @reply = Reply.find(params[:id])
+    @reply.upvote_by current_user
+    redirect_to :back
+  end
+    
+  def downvote 
+    @reply = Reply.find(params[:id])
+    @reply.downvote_by current_user
+    redirect_to :back
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reply
@@ -64,10 +84,23 @@ class RepliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reply_params
-      params.require(:reply).permit(:content, :post_id, :user_id)
+      x = params.require(:reply).permit(:content, :post_id)
+      x.merge!(user_id: current_user.id)
+      return x
     end
     
     def update_params
       params.require(:reply).permit(:content)
     end
+    
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+  
+  
 end

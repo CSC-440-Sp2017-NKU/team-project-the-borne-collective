@@ -1,11 +1,71 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 ">
+      <div class="panel panel-default">
+        <div class="panel-heading">  
+          <h4 >User Profile</h4>
+        </div>
+        <div class="panel-body">
+          <div class="box box-info">
+            <div class="box-body">
+              <div class="col-sm-4">
+                <div  align="center"> 
+                 <%= gravatar_for(@user, size: 150, img_class: "img-circle img-responsive" ) %>
+                </div>
+                <br>
+                <!-- /input-group -->
+              </div>
+              <div class="col-sm-2">
+                <h4><b>Name: </b></h4>
+                <h4><b>Email:</b></h4>
+                <h4><b>Answers:</b></h4>
+                <h4><b>Points:</b></h4>
+                <h4><b>Status:</b></h4>
+                
+              </div>
+              <div class="col-sm-6 ">
+                <h4><%= @user.name %></h4>
+                <h4><%= @user.email %></h4>
+                <h4><%= @user.replies.count %></h4>
+                <h4><%= @upvotes - @downvotes %></h4>
+                <%= reputation_for(@upvotes, @downvotes) %>
+              </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+            
+            <div class="col-sm-12 col-sm-offset-1"><h4 style="text-decoration: underline;">Course Schedule</h4></div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+            <% if @active_courses.empty? %>
+              <div class="col-sm-12 col-sm-offset-1"><h4>User isn't currently registered for any courses</h4></div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+            <% else %>
+              <% @active_courses.each do |course| %>
+                <%= link_to course.name, course, class: "col-sm-12 col-sm-offset-2" %>
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
+              <% end %>
+            <% end %>
+            
+              
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 ">
+    <h3>Recent Answers</h3>
+    <% if @user.replies.count == 0 %>
+      <h4>User has Zero answers</h4>
+    <% else %>
+      <% @user.replies.each do |reply| %>
+        <%= render partial: 'users/profile_answer_listing', locals: {reply: reply} %>
+      <% end %>
+    <% end %>
+    
+  </div>
+</div>
 </div>

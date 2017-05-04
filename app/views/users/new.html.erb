@@ -18,19 +18,19 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
       
-       <!--<% if @admin %>-->
+      <% if @admin %>
        
-       <!--  <%= f.label :registrar, class: "checkbox inline" do %>-->
-       <!--    <%= f.check_box :registrar %>-->
-       <!--     <span>Registrar</span>-->
-       <!--  <% end %>-->
+       <%= f.label :registrar, class: "checkbox-inline" do %>
+        <%= f.check_box :registrar %>
+          <span>Registrar</span>
+        <% end %>
          
-       <!--  <%= f.label :admin, class: "checkbox inline" do %>-->
-       <!--    <%= f.check_box :admin %>-->
-       <!--     <span>Admin</span>-->
-       <!--  <% end %>-->
+       <%= f.label :admin, class: "checkbox-inline" do %>
+         <%= f.check_box :admin %>
+         <span>Admin</span>
+       <% end %>
          
-       <!--<% end %>-->
+       <% end %>
       
       <%= f.submit "Create User", class: "btn btn-primary" %>
     <% end %>

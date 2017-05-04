@@ -14,6 +14,11 @@ gem 'faker',                   '1.6.6'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 
+
+# Extends active record to include search functionality
+gem 'textacular', require: 'textacular/rails'
+
+gem 'acts_as_votable', '~> 0.10.0'
 #
 gem 'bootstrap-sass', '3.3.6'
 # Use postgresql as the database for Active Record
@@ -53,7 +58,7 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+
 end
 
 group :development do
@@ -65,6 +70,11 @@ group :development do
   gem 'spring'
   
   gem 'spring-watcher-listen', '~> 2.0.0'
+  
+  # Format ERB
+  gem 'htmlbeautifier'
+
+  gem 'byebug', platform: :mri
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

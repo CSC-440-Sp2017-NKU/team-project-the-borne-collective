@@ -1,0 +1,47 @@
+<% provide(:title, @user.name) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 ">
+      <div class="panel panel-default">
+        <div class="panel-heading">  
+          <h4 >User Profile</h4>
+        </div>
+        <div class="panel-body">
+          <div class="box box-info">
+            <div class="box-body">
+              <div class="col-sm-4">
+                <div  align="center"> 
+                 <%= gravatar_for(@user, size: 150, img_class: "img-circle img-responsive" ) %>
+                </div>
+                <br>
+                <!-- /input-group -->
+              </div>
+              <div class="col-sm-2">
+                <h4><b>Name: </b></h4>
+                <h4><b>Email:</b></h4>
+                <h4><b>Joined:</b></h4>
+                <h4><b>Points:</b></h4>
+                <h4><b>Status:</b></h4>
+                
+              </div>
+              <div class="col-sm-6 ">
+                <h4><%= @user.name %></h4>
+                <h4><%= @user.email %></h4>
+                <h4><%= humanize_join_date(@user.created_at) %></h4>
+                <h4><%= @upvotes - @downvotes %></h4>
+                <%= reputation_for(@upvotes, @downvotes) %>
+              </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+            <div class="col-sm-5 col-xs-6" >First Name:</div>
+            <div class="col-sm-7 col-xs-6 ">Prasad</div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

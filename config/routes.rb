@@ -1,17 +1,43 @@
 Rails.application.routes.draw do
   
-  get    '/signup', to: 'users#new'
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  get    '/register', to: 'users#new'
+  get    '/login',    to: 'sessions#new'
+  post   '/login',    to: 'sessions#create'
+  delete '/logout',   to: 'sessions#destroy'
+  
+  get    '/register_courses/:id/edit',   to: 'course_registrations#edit'
+  post   '/register_courses/:id',        to: 'course_registrations#update'
+  delete '/register_courses/:id',        to: 'course_registrations#destroy'
+  
+  get '/search', to: 'home#search'
+  post '/search', to: 'home#search'
+  
+  
   
   resources :users
   resources :courses
   resources :replies
   resources :posts
+  
+  resources :posts do
+    member do
+      put "like", to: "posts#upvote"
+      put "dislike", to: "posts#downvote"
+    end
+  end
+  
+  resources :replies do
+    member do
+      put "like", to: "replies#upvote"
+      put "dislike", to: "replies#downvote"
+    end
+  end
+
   get 'home/index'
+  get  'application/management'
 
   root 'home#index'
+  root 'application#management'
   
 #                                - resources :[MODEL] route table -
 #------------------------------------------------------------------------------------------

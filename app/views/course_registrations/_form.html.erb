@@ -1,0 +1,20 @@
+<%= form_for(course_registration) do |f| %>
+  <div class="form-group row">
+    <div class="col-6 col-md-4">
+      <label for="course_id" class="col-sm-2 col-form-label">${#course.name}</label>
+      <input type="hidden" id="course_id" value="${#course.id}"></hidden>
+    </div>
+    <div class="col-6 col-md-4">
+      <select class="custom-select">
+        <option selected>Open this select menu</option>
+        <option value="0">Enrolled</option>
+        <option value="1">Completed</option>
+        <option value="2">Teaching</option>
+        <option value="3">Have_Taught</option>
+      </select>
+    </div>
+    <div class="col-6 col-md-4">
+      <input class="btn btn-primary" type="submit" value="Enroll">
+    </div>
+  </div>
+<% end %>
