@@ -1,0 +1,11 @@
+Admin:
+borne@collective.com
+foobar
+
+Registrar:
+jesseemeadows@gmail.com
+foobar
+
+User:
+example@railstutorial.org
+foobar
